@@ -11,6 +11,8 @@ statement :
     |
     scopeStatement NEWLINE
     |
+    functionDeclaration NEWLINE
+    |
     expression NEWLINE
     ;
 
@@ -37,6 +39,16 @@ prescopeStatement :
 
 postscopeStatement :
     (declaration | definition) '::' INDENT statement+ DEDENT;
+
+/* Function */
+
+functionDeclaration :
+    typeLabel VALID_NAME '(' functionArguments ')'
+    ;
+
+functionArguments :
+    (typeLabel VALID_NAME (',' typeLabel VALID_NAME))?
+    ;
 
 /* Initializer */
 
