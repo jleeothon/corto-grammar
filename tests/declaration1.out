@@ -1,0 +1,1 @@
+(program (statement (declaration (typeLabel (identifier int8)) a) \n))

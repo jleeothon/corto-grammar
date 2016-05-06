@@ -1,0 +1,1 @@
+(program (statement (scopeStatement (postscopeStatement (definition (declaration (typeLabel (identifier class)) Dog) : (initializerList (initializerElem (initializerValue (identifier Animal))))) :: INDENT (statement (definition (declaration (typeLabel (identifier member)) name) : (initializerList (initializerElem (initializerValue (identifier string))))) \n) DEDENT)) \n))

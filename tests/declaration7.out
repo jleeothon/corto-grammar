@@ -1,0 +1,1 @@
+(program (statement (declaration (typeLabel (anonymousType (identifier list) (initializerBraces { (initializerList (initializerElem (initializerValue (anonymousType (identifier int) (initializerBraces { (initializerList (initializerElem (initializerValue (identifier WIDTH_8)))) }))))) }))) a) \n))

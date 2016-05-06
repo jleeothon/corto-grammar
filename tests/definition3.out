@@ -1,0 +1,1 @@
+(program (statement (definition (declaration (typeLabel (identifier Point)) a) : (initializerList (initializerElem (initializerValue (identifier x)) = (initializerValue (literal 3))) , (initializerElem (initializerValue (identifier y)) = (initializerValue (literal 4))))) \n))

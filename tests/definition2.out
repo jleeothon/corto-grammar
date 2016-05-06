@@ -1,0 +1,1 @@
+(program (statement (definition (declaration (typeLabel (identifier intList)) a) : (initializerList (initializerElem (initializerValue (literal 1))) , (initializerElem (initializerValue (literal 2))) , (initializerElem (initializerValue (literal 3))))) \n))

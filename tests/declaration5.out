@@ -1,0 +1,1 @@
+(program (statement (declaration (typeLabel (anonymousType (identifier map) (initializerBraces { (initializerList (initializerElem (initializerValue (identifier keyType)) = (initializerValue (identifier string))) , (initializerElem (initializerValue (identifier elemType)) = (initializerValue (identifier int32)))) }))) m) \n))

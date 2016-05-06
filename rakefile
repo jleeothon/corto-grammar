@@ -1,0 +1,59 @@
+require 'rake/clean'
+
+cp = ENV['CLASSPATH']
+ENV['CLASSPATH'] = ".:/usr/local/lib/antlr-4.5.3-complete.jar:#{cp}"
+
+antlr4cmd = "java -jar /usr/local/lib/antlr-4.5.3-complete.jar"
+gruncmd = "java org.antlr.v4.gui.TestRig"
+
+
+
+GeneratedSuffixes = %w(.tokens BaseListener.java Lexer.java Lexer.tokens Listener.java Parser.java)
+GeneratedFiles = GeneratedSuffixes.map do |suffix|
+  "Cortogram#{suffix}"
+end
+
+CLEAN.include FileList.new("*.class")
+
+CLOBBER.include GeneratedFiles
+
+GeneratedFiles.each do |f|
+  file f => "Cortogram.g4" do
+    sh "#{antlr4cmd} Cortogram.g4"
+  end
+end
+
+task "gen" => GeneratedFiles
+
+file "CortogramParser.class" => "CortogramParser.java" do
+  sh "javac Cortogram*.java"
+end
+
+task "build" => "CortogramParser.class"
+
+task "test" do
+  successCount = 0
+  failureCount = 0
+  FileList.new("tests/*.in").each do |t|
+    actual = `#{gruncmd} Cortogram program -tree #{t}`.strip
+    expected = File.read(t.pathmap("%X.out")).strip
+    if actual == expected
+      successCount += 1
+      puts "+ #{t}"
+    else
+      failureCount += 1
+      puts "============================================================"
+      puts "! #{t}"
+      puts "<text>"
+      puts File.read(t)
+      puts "------------------------------------------------------------"
+      puts "<actual>"
+      puts actual
+      puts "------------------------------------------------------------"
+      puts "<expect>"
+      puts expected
+      puts "============================================================"
+    end
+  end
+  puts "Success: #{successCount}, Failure: #{failureCount}"
+end

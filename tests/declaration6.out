@@ -1,0 +1,1 @@
+(program (statement (declaration (typeLabel (anonymousType (identifier sometype) (initializerBraces { initializerList }))) somename) \n))

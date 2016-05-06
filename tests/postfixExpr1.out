@@ -1,0 +1,1 @@
+(program (statement (expression (additiveExpression (multiplicativeExpression (unaryExpression (postfixExpression (postfixExpression (atomExpression (atom (identifier a)))) (postfixOperation (memberAccess . b))))))) \n))
