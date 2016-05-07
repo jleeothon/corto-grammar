@@ -78,12 +78,77 @@ initializerValue :
 
 /* Expression */
 
+unaryOperator : 'not' | '+' | '-' | '!' ;
+equalityOperator : '==' | '!=' ;
+comparisonOperator : '<' | '>' | '<=' | '>=' ;
+shiftOp : '<<' | '>>' ;
+
+
 expression :
-    additiveExpression
+    commaExpression
+    ;
+
+assignmentExpression
+    :
+    commaExpression assignmentOperator commaExpression
+    ;
+
+commaExpression
+    :
+    conditionalExpression (',' conditionalExpression)*
+    ;
+
+conditionalExpression
+    :
+    logicOrExpression '?' logicOrExpression ':' logicOrExpression
+    ;
+
+logicOrExpression
+    :
+    logicAndExpression ('or' logicAndExpression)*
+    ;
+
+logicAndExpression
+    :
+    equalityExpression ('and' equalityExpression)*
+    ;
+
+
+/* Here check order in C and in Corto */
+
+equalityExpression
+    :
+    comparisonExpression (equalityOperator comparisonExpression)*
+    ;
+
+comparisonExpression
+    :
+    shiftExpression ( comparisonOperator shiftExpression)*
+    ;
+
+bitOrExpression
+    :
+    bitXorExpression ('|' bitXorExpression)*
+    ;
+
+bitXorExpression
+    :
+    bitAndExpression ('^' bitAndExpression)*
+    ;
+
+bitAndExpression
+    :
+    shiftExpression ('&' shiftExpression)*
+    ;
+
+shiftExpression :
+    additiveExpression ( shiftOp additiveExpression )*
     ;
 
 additiveExpression :
     multiplicativeExpression (('+' | '-') multiplicativeExpression)*
+    |
+    multiplicativeExpression
     ;
 
 multiplicativeExpression :
@@ -91,7 +156,7 @@ multiplicativeExpression :
     ;
 
 unaryExpression :
-    prefixOperator postfixExpression
+    unaryOperator postfixExpression
     |
     postfixExpression
     ;
@@ -108,8 +173,12 @@ atomExpression :
     atom
     ;
 
-prefixOperator :
-    'not'
+/* Operators */
+
+assignmentOperator :
+    '=='
+    |
+    '+='
     ;
 
 postfixOperation :

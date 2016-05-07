@@ -1,1 +1,0 @@
-(program (statement (expression (additiveExpression (multiplicativeExpression (unaryExpression (postfixExpression (atomExpression (atom (literal 3)))))) + (multiplicativeExpression (unaryExpression (postfixExpression (atomExpression (atom (literal 4)))))) - (multiplicativeExpression (unaryExpression (postfixExpression (atomExpression (atom (literal 5)))))))) \n))
